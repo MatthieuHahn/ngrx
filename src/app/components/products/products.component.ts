@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { FetchProducts } from 'src/app/core/store/actions/products.actions';
 import { getProducts, getLoading } from 'src/app/core/store/selectors/products.selector';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/core/models/products.model';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -15,10 +15,10 @@ import { filter } from 'rxjs/operators';
 export class ProductsComponent implements OnInit {
   public products$: Observable<Product[]> = this.store.pipe(
     select(getProducts),
-  )
+  );
   public loading$: Observable<boolean> = this.store.pipe(
     select(getLoading)
-  )
+  );
 
   constructor(private store: Store) { }
 
